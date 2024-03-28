@@ -16,6 +16,9 @@ public class StudentService {
     public List<Student> findAll(){
         return studentRepository.findAll();
     }
+    public List<Student> findByFirstname(String firstname){
+        return studentRepository.findByFirstname(firstname);
+    }
     public Optional<Student> findById(int id){
         return studentRepository.findById(id);
     }
@@ -23,12 +26,18 @@ public class StudentService {
         studentRepository.save(student);
     }
     public void update(int id, Student student) throws Exception {
-        Optional<Student> stForUpdate = findById(id);
-        student.setId(id);
+        Optional<Student> stForUpdate = studentRepository.findById(id);
+
         if(stForUpdate.isPresent()){
-            studentRepository.save(student);
-        }else{
-            throw new Exception("user with this id doesn't exist");
+            Student existingStudent = stForUpdate.get();
+            existingStudent.setFirstname(student.getFirstname());
+            existingStudent.setLastname(student.getLastname());
+            existingStudent.setEmail(student.getEmail());
+            existingStudent.setAge(student.getAge());
+
+            studentRepository.save(existingStudent);
+        } else {
+            throw new Exception("User with this id doesn't exist");
         }
 
     }

@@ -1,9 +1,6 @@
 package com.example.demo.model;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -21,6 +18,11 @@ public class Student {
     private String lastname;
     private String email;
     private int age;
+    @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    private StudentProfile studentProfile;
+    @ManyToOne
+    @JoinColumn(name = "school_id", referencedColumnName = "id")
+    private School school;
 
     public Student(String firstname, String lastname, String email, int age) {
         this.firstname = firstname;
