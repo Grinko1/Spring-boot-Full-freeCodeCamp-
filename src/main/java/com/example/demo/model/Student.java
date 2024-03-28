@@ -1,5 +1,7 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -19,9 +21,12 @@ public class Student {
     private String email;
     private int age;
     @OneToOne(mappedBy = "student", cascade = CascadeType.ALL)
+    @JsonManagedReference
     private StudentProfile studentProfile;
     @ManyToOne
-    @JoinColumn(name = "school_id", referencedColumnName = "id")
+    @JoinColumn(name = "school_id")
+    @JsonBackReference
+//    @JsonManagedReference
     private School school;
 
     public Student(String firstname, String lastname, String email, int age) {

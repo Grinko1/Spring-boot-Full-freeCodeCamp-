@@ -1,5 +1,6 @@
 package com.example.demo.model;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -17,6 +18,7 @@ public class StudentProfile {
     private String bio;
     @OneToOne
     @JoinColumn(name = "student_id", referencedColumnName = "id")
+    @JsonBackReference
     private Student student;
 
     public StudentProfile(String bio) {
