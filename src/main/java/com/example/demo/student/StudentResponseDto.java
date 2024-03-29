@@ -1,7 +1,6 @@
-package com.example.demo.dto;
+package com.example.demo.student;
 
-import com.example.demo.model.School;
-import com.example.demo.model.StudentProfile;
+import com.example.demo.studentProfile.StudentProfile;
 
 public record StudentResponseDto (
         String firstname,

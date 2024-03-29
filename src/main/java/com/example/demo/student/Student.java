@@ -1,8 +1,12 @@
-package com.example.demo.model;
+package com.example.demo.student;
 
+import com.example.demo.studentProfile.StudentProfile;
+import com.example.demo.school.School;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotEmpty;
+import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.ToString;
@@ -16,7 +20,9 @@ public class Student {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Integer id;
+    @NotEmpty
     private String firstname;
+    @NotEmpty
     private String lastname;
     private String email;
     private int age;

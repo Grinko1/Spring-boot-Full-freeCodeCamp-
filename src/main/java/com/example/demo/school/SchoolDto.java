@@ -1,6 +1,6 @@
-package com.example.demo.dto;
+package com.example.demo.school;
 
-import com.example.demo.model.Student;
+import com.example.demo.student.Student;
 
 import java.util.List;
 

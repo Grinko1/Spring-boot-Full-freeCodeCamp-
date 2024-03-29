@@ -1,9 +1,6 @@
-package com.example.demo.utils;
+package com.example.demo.student;
 
-import com.example.demo.dto.StudentDto;
-import com.example.demo.dto.StudentResponseDto;
-import com.example.demo.model.School;
-import com.example.demo.model.Student;
+import com.example.demo.school.School;
 import org.springframework.stereotype.Service;
 
 @Service

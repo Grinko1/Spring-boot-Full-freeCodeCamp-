@@ -1,13 +1,9 @@
-package com.example.demo.service;
+package com.example.demo.student;
 
-import com.example.demo.dto.StudentDto;
-import com.example.demo.dto.StudentResponseDto;
-import com.example.demo.model.Student;
-import com.example.demo.repository.StudentRepository;
-import com.example.demo.utils.StudentMapper;
+import com.example.demo.school.School;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.RequestBody;
+
 
 import java.util.List;
 import java.util.Optional;
@@ -20,16 +16,16 @@ public class StudentService {
     private final StudentMapper studentMapper;
 
     public List<StudentResponseDto> findAll() {
-        List<Student> students = studentRepository.findAll();
-        return students.stream().map(studentMapper::mapToStudentResponseDto).collect(Collectors.toList());
+        return  studentRepository.findAll() .stream().map(studentMapper::mapToStudentResponseDto).collect(Collectors.toList());
     }
 
-    public List<Student> findByFirstname(String firstname) {
-        return studentRepository.findByFirstname(firstname);
+    public List<StudentResponseDto> findByFirstname(String firstname) {
+       return studentRepository.findByFirstname(firstname).stream().map(studentMapper::mapToStudentResponseDto).collect(Collectors.toList());
     }
 
-    public Optional<Student> findById(int id) {
-        return studentRepository.findById(id);
+    public StudentResponseDto findById(int id) {
+        return studentRepository.findById(id).map(studentMapper::mapToStudentResponseDto).orElse(null);
+
     }
 
     public StudentResponseDto save(StudentDto studentDto) {
@@ -40,14 +36,15 @@ public class StudentService {
 
     public StudentResponseDto update(int id, StudentDto dto) throws Exception {
         Optional<Student> stForUpdate = studentRepository.findById(id);
-
-
         if (stForUpdate.isPresent()) {
             Student existingStudent = stForUpdate.get();
             existingStudent.setFirstname(dto.firstname());
             existingStudent.setLastname(dto.lastname());
             existingStudent.setEmail(dto.email());
             existingStudent.setAge(dto.age());
+            School school = new School();
+            school.setId(dto.schoolId());
+            existingStudent.setSchool(school);
 
             Student student= studentRepository.save(existingStudent);
             return studentMapper.mapToStudentResponseDto(student);

@@ -1,5 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.studentProfile;
 
+import com.example.demo.student.Student;
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import jakarta.persistence.*;
 import lombok.Data;

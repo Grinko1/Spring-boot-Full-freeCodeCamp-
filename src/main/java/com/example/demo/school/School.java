@@ -1,6 +1,6 @@
-package com.example.demo.model;
+package com.example.demo.school;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.example.demo.student.Student;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
