@@ -16,7 +16,7 @@ public class StudentService {
     private final StudentMapper studentMapper;
 
     public List<StudentResponseDto> findAll() {
-        return  studentRepository.findAll() .stream().map(studentMapper::mapToStudentResponseDto).collect(Collectors.toList());
+        return  studentRepository.findAll().stream().map(studentMapper::mapToStudentResponseDto).collect(Collectors.toList());
     }
 
     public List<StudentResponseDto> findByFirstname(String firstname) {
